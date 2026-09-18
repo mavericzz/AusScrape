@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.env
+data/*.json
+!data/card_*.json
+!data/.gitkeep
+frontend/card.json
+dist/
+.DS_Store
+*.pyc
+vendor/

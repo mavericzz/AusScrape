@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AU Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <base href="/" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="mast">
+    <a class="mast__mark" href="./">AU DESK</a>
+    <div class="mast__title">
+      <h1 id="page-title">Thoroughbred handicap</h1>
+      <p id="card-meta">Loading card…</p>
+    </div>
+    <form class="mast__tools" id="tools">
+      <label>Bankroll $<input id="bankroll" type="number" min="50" step="50" value="500" /></label>
+      <button type="button" id="rescrape">Rescrape</button>
+    </form>
+  </header>
+  <nav class="days-strip" id="days-strip"></nav>
+  <section class="best" id="best-bet"></section>
+  <section class="plays" id="plays-strip"></section>
+  <nav class="meetings" id="meetings"></nav>
+  <main>
+    <aside class="races" id="races"></aside>
+    <section class="sheet" id="sheet"></section>
+  </main>
+  <p class="legal">18+ · Form from racing.com, Punters sectionals, thoroughbred racecards, and jev-ultrafast browser passes. Not a guarantee. Gamble responsibly.</p>
+  <script src="site.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

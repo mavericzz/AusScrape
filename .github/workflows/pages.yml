@@ -1,0 +1,40 @@
+name: GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+        with:
+          python-version: "3.12"
+      - run: uv sync --frozen
+      - name: Build static desk
+        run: |
+          REPO="${GITHUB_REPOSITORY##*/}"
+          OWNER="${GITHUB_REPOSITORY_OWNER}"
+          if [ "$REPO" = "${OWNER}.github.io" ]; then BASE="/"; else BASE="/${REPO}/"; fi
+          uv run python scripts/build_pages.py --out dist --base "$BASE"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deploy
+        uses: actions/deploy-pages@v4
